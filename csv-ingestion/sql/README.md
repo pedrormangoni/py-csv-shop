@@ -16,19 +16,19 @@ Esta pasta centraliza as queries SQL alinhadas às perguntas do escopo do projet
 ### Executáveis com a ETL atual
 - `00_kpis_executivos.sql`
 - `01_dashboard_vendas.sql`
+- `02_dashboard_comportamento_cliente.sql`
 - `03_dashboard_financeiro.sql`
+- `04_dashboard_personalizacao.sql`
 
-Essas queries usam a view [vw_base_vendas](../app/pipeline/schema.py) criada a partir da ETL atual.
+Essas queries usam a view [vw_base_vendas](../app/pipeline/schema_v2.py) criada a partir da ETL atual.
 
 ### Dependem de dados adicionais
-- `02_dashboard_comportamento_cliente.sql`
-- `04_dashboard_personalizacao.sql`
 - `05_dashboard_producao.sql`
 
 Essas consultas assumem a existência e carga das tabelas abaixo:
-- `fato_navegacao`
 - `fato_producao`
-- `dim_personalizacao` populada com dados reais
+
+Obs.: `fato_navegacao` e `dim_personalizacao` já são preenchidas pela ETL atual.
 
 ## Convenções
 

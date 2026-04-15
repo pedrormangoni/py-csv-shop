@@ -1,6 +1,6 @@
 import sys
 
-from app.pipeline.etl_sales import executar_etl
+from app.pipeline.etl_sales_v2 import executar_etl
 
 
 def main():

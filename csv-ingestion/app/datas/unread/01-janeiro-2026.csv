@@ -1,0 +1,41 @@
+id_venda,id_cliente,id_produto,data,id_origem,origem,tipo_movel,categoria,material,acabamento,medidas,quantidade_modulos,adicionais,valor_total,custo_total,margem_lucro,status,quantidade,pagina,tempo_permanencia,acao,cidade,estado,tipo_cliente
+1405,1281,5004,2026-01-28,1,Google,planejado,Quarto,MDF,Fosco,3.20x0.55x2.20,8,cabideiro extra,34399.01,20301.97,14097.04,produzido,2,orcamento,609,comprar,Sao Paulo,SP,residencial
+1406,1031,5012,2026-01-12,2,Instagram,modulado,Cozinha,MDP,Branco,1.20x0.60x2.00,2,rodape MDF,3874.33,2369.3,1505.03,entregue,1,orcamento,303,abandonar,Joinville,SC,residencial
+1407,1083,5006,2026-01-20,1,Google,planejado,Quarto,Madeira Maciça,Verniz,1.80x0.55x2.10,4,espelho,19362.86,11551.52,7811.34,produzido,1,categoria,236,orcamento,Sao Paulo,SP,residencial
+1408,1136,5001,2026-01-26,4,Facebook,planejado,Cozinha,MDF,Fosco,3.60x0.60x2.20,9,calha de tomada,26877.07,17936.01,8941.06,aprovado,1,produto,95,visualizar,Sao Paulo,SP,residencial
+1409,1209,5023,2026-01-13,6,YouTube,padrao,Sala,Madeira Maciça,Natural,1.20x0.45x0.80,2,rack suspenso,4740.51,2978.43,1762.08,produzido,2,carrinho,122,comprar,Blumenau,SC,corporativo
+1410,1105,5018,2026-01-11,1,Google,modulado,Sala,MDF,Brilho,2.10x0.45x2.20,5,adega,12197.04,7107.23,5089.81,orcamento,1,produto,633,visualizar,Rio de Janeiro,RJ,residencial
+1411,1186,5009,2026-01-31,1,Google,planejado,Home Office,MDF,Fosco,3.60x0.60x2.40,9,puxador cava,27045.76,18056.86,8988.9,orcamento,1,produto,690,visualizar,Fortaleza,CE,residencial
+1412,1018,5021,2026-01-22,4,Facebook,padrao,Cozinha,Compensado,Branco,0.60x0.60x0.80,1,LED sob medida,774.83,507.59,267.24,produzido,1,carrinho,483,abandonar,Pelotas,RS,residencial
+1413,1202,5025,2026-01-30,1,Google,padrao,Banheiro,MDF,Branco,0.60x0.40x0.80,1,nichos embutidos,1399.55,861.88,537.67,aprovado,1,orcamento,310,visualizar,Porto Alegre,RS,residencial
+1414,1252,5012,2026-01-14,5,WhatsApp,modulado,Cozinha,MDP,Branco,1.50x0.60x2.20,3,painel ripado,5929.87,3882.71,2047.16,orcamento,1,orcamento,364,orcamento,Sao Paulo,SP,residencial
+1415,1015,5018,2026-01-21,3,Direto,modulado,Sala,MDF,Brilho,2.40x0.45x2.20,6,adega,9621.52,6198.61,3422.91,orcamento,1,carrinho,694,visualizar,Sao Paulo,SP,residencial
+1416,1211,5019,2026-01-11,2,Instagram,modulado,Home Office,MDP,Branco,2.80x0.60x2.00,7,calha eletrica,13050.39,8742.84,4307.55,orcamento,1,orcamento,614,visualizar,Curitiba,PR,residencial
+1417,1236,5025,2026-01-21,3,Direto,padrao,Banheiro,MDF,Branco,1.20x0.40x0.75,2,nenhum,2161.2,1243.37,917.83,orcamento,1,produto,406,orcamento,Natal,RN,residencial
+1418,1015,5002,2026-01-23,2,Instagram,planejado,Cozinha,MDF,Laca,3.20x0.60x2.40,8,LED,28510.92,19367.2,9143.72,aprovado,1,carrinho,241,comprar,Sao Paulo,SP,residencial
+1419,1145,5017,2026-01-07,2,Instagram,modulado,Sala,MDP,Cinza,1.80x0.45x2.00,4,rack suspenso,7504.43,4635.08,2869.35,orcamento,1,produto,510,visualizar,Curitiba,PR,residencial
+1420,1089,5028,2026-01-13,3,Direto,padrao,Lavanderia,MDF,Fosco,1.80x0.55x1.80,4,rodizios,3967.96,2217.35,1750.61,orcamento,2,categoria,716,visualizar,Campinas,SP,residencial
+1421,1024,5001,2026-01-17,3,Direto,planejado,Cozinha,MDF,Fosco,2.10x0.60x2.40,5,calha de tomada,16096.51,8952.38,7144.13,orcamento,1,produto,509,visualizar,Campo Grande,MS,residencial
+1422,1116,5017,2026-01-14,1,Google,modulado,Sala,MDP,Cinza,0.60x0.45x2.10,1,rack suspenso,1399.1,944.7,454.4,produzido,1,orcamento,657,comprar,Niteroi,RJ,corporativo
+1423,1136,5012,2026-01-14,5,WhatsApp,modulado,Cozinha,MDP,Branco,1.50x0.60x2.20,3,rodape MDF,4242.85,2751.97,1490.88,aprovado,1,carrinho,66,comprar,Sao Paulo,SP,residencial
+1424,1084,5017,2026-01-14,1,Google,modulado,Sala,MDP,Cinza,1.80x0.45x1.80,4,rack TV,8061.15,4987.14,3074.01,aprovado,1,produto,238,visualizar,Recife,PE,corporativo
+1425,1093,5020,2026-01-24,2,Instagram,modulado,Home Office,MDF,Fosco,1.50x0.60x2.00,3,gaveteiro,7453.46,4737.55,2715.91,orcamento,1,orcamento,366,orcamento,Uberlandia,MG,corporativo
+1426,1216,5029,2026-01-04,2,Instagram,padrao,Varanda,Madeira Maciça,Verniz,0.60x0.50x0.85,1,banco embutido,1489.69,966.71,522.98,produzido,1,produto,74,orcamento,Anapolis,GO,residencial
+1427,1232,5008,2026-01-24,8,Pinterest,planejado,Sala,MDF,Acetinado,1.50x0.45x2.20,3,adega,11255.77,7538.24,3717.53,entregue,1,produto,291,comprar,Niteroi,RJ,residencial
+1428,1127,5022,2026-01-03,1,Google,padrao,Quarto,MDF,Acetinado,1.20x0.55x0.80,2,porta de correr,2432.92,1686.41,746.51,orcamento,2,orcamento,347,visualizar,Juiz de Fora,MG,residencial
+1429,1068,5009,2026-01-04,4,Facebook,planejado,Home Office,MDF,Fosco,3.60x0.60x2.20,9,puxador cava,36184.89,22957.81,13227.08,aprovado,2,orcamento,474,orcamento,Goiania,GO,corporativo
+1430,1048,5001,2026-01-08,3,Direto,planejado,Cozinha,MDF,Fosco,1.50x0.60x2.40,3,gabinete extra,10193.23,6322.18,3871.05,aprovado,1,categoria,337,visualizar,Rio de Janeiro,RJ,residencial
+1431,1268,5011,2026-01-30,1,Google,modulado,Cozinha,MDP,Amadeirado,0.60x0.60x2.20,1,gabinete extra,1640.98,1102.61,538.37,orcamento,1,produto,707,orcamento,Londrina,PR,residencial
+1432,1094,5021,2026-01-23,1,Google,padrao,Cozinha,Compensado,Branco,1.80x0.60x1.80,4,calha de tomada,3087.73,2101.82,985.91,orcamento,1,carrinho,719,visualizar,Sao Paulo,SP,residencial
+1433,1186,5001,2026-01-13,1,Google,planejado,Cozinha,MDF,Fosco,1.50x0.60x2.40,3,gabinete extra,10420.02,6894.27,3525.75,aprovado,2,checkout,719,comprar,Fortaleza,CE,residencial
+1434,1203,5019,2026-01-03,1,Google,modulado,Home Office,MDP,Branco,0.60x0.60x2.00,1,passa fios,1326.83,900.72,426.11,orcamento,1,produto,671,visualizar,Vitoria,ES,corporativo
+1435,1276,5004,2026-01-10,4,Facebook,planejado,Quarto,MDF,Fosco,1.50x0.55x2.40,3,porta de correr,9604.55,6346.85,3257.7,orcamento,1,carrinho,278,orcamento,Campinas,SP,corporativo
+1436,1015,5020,2026-01-13,1,Google,modulado,Home Office,MDF,Fosco,0.60x0.60x1.80,1,gaveteiro,2425.32,1642.65,782.67,entregue,1,carrinho,529,comprar,Sao Paulo,SP,residencial
+1437,1263,5014,2026-01-27,5,WhatsApp,modulado,Quarto,MDP,Amadeirado,1.20x0.55x1.80,2,gaveteiro,2961.95,1657.29,1304.66,orcamento,1,carrinho,691,abandonar,Florianopolis,SC,residencial
+1438,1224,5001,2026-01-10,3,Direto,planejado,Cozinha,MDF,Fosco,3.20x0.60x2.30,8,gabinete extra,28577.91,18654.12,9923.79,entregue,1,carrinho,330,abandonar,Manaus,AM,residencial
+1439,1200,5027,2026-01-27,6,YouTube,planejado,Banheiro,MDF,Laca,2.40x0.40x2.40,6,cuba embutida,24476.32,14499.0,9977.32,entregue,1,carrinho,650,comprar,Sao Paulo,SP,corporativo
+1440,1213,5026,2026-01-18,1,Google,modulado,Banheiro,MDP,Branco,0.60x0.40x2.10,1,cuba embutida,1384.2,933.22,450.98,orcamento,1,carrinho,662,abandonar,Juiz de Fora,MG,residencial
+1441,1237,5005,2026-01-09,8,Pinterest,planejado,Quarto,MDF,Amadeirado,2.40x0.55x2.10,6,cabideiro extra,23181.49,15717.31,7464.18,produzido,1,produto,478,abandonar,Salvador,BA,residencial
+1442,1057,5028,2026-01-26,3,Direto,padrao,Lavanderia,MDF,Fosco,0.60x0.55x0.75,1,prateleira secagem,939.25,545.52,393.73,aprovado,1,orcamento,540,orcamento,Uberlandia,MG,residencial
+1443,1051,5004,2026-01-12,1,Google,planejado,Quarto,MDF,Fosco,1.50x0.55x2.10,3,modulo canto,10071.64,6701.22,3370.42,aprovado,1,carrinho,117,visualizar,Caxias do Sul,RS,corporativo
+1444,1287,5018,2026-01-12,3,Direto,modulado,Sala,MDF,Brilho,1.20x0.45x2.00,2,adega,4292.48,2449.71,1842.77,produzido,2,categoria,558,orcamento,Santos,SP,corporativo

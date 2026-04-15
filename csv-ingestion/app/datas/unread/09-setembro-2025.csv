@@ -1,0 +1,34 @@
+id_venda,id_cliente,id_produto,data,id_origem,origem,tipo_movel,categoria,material,acabamento,medidas,quantidade_modulos,adicionais,valor_total,custo_total,margem_lucro,status,quantidade,pagina,tempo_permanencia,acao,cidade,estado,tipo_cliente
+1247,1010,5021,2025-09-19,2,Instagram,padrao,Cozinha,Compensado,Branco,1.20x0.60x0.75,2,calha de tomada,1797.84,1116.13,681.71,aprovado,1,checkout,327,comprar,Joinville,SC,corporativo
+1248,1143,5012,2025-09-13,2,Instagram,modulado,Cozinha,MDP,Branco,0.60x0.60x2.00,1,painel ripado,1887.32,1084.98,802.34,orcamento,1,categoria,705,orcamento,Recife,PE,corporativo
+1249,1075,5017,2025-09-08,4,Facebook,modulado,Sala,MDP,Cinza,1.20x0.45x1.80,2,painel ripado,2867.98,1800.18,1067.8,aprovado,2,orcamento,70,comprar,Uberlandia,MG,residencial
+1250,1166,5002,2025-09-17,3,Direto,planejado,Cozinha,MDF,Laca,2.10x0.60x2.30,5,calha de tomada,17547.31,10647.32,6899.99,aprovado,1,carrinho,258,orcamento,Florianopolis,SC,residencial
+1251,1181,5020,2025-09-29,3,Direto,modulado,Home Office,MDF,Fosco,2.10x0.60x2.00,5,puxador cava,8675.11,5136.72,3538.39,orcamento,1,orcamento,706,visualizar,Rio de Janeiro,RJ,corporativo
+1252,1071,5008,2025-09-04,2,Instagram,planejado,Sala,MDF,Acetinado,3.20x0.45x2.40,8,painel ripado,25819.84,14287.84,11532.0,orcamento,1,carrinho,70,visualizar,Belo Horizonte,MG,residencial
+1253,1076,5001,2025-09-09,5,WhatsApp,planejado,Cozinha,MDF,Fosco,3.60x0.60x2.40,9,calha de tomada,29191.57,19206.07,9985.5,aprovado,1,checkout,512,comprar,Sao Jose dos Campos,SP,residencial
+1254,1088,5005,2025-09-19,4,Facebook,planejado,Quarto,MDF,Amadeirado,1.50x0.55x2.30,3,cabideiro premium,12232.27,7822.29,4409.98,orcamento,1,produto,565,visualizar,Belo Horizonte,MG,residencial
+1255,1259,5016,2025-09-27,1,Google,modulado,Quarto,MDF,Acetinado,0.60x0.55x2.00,1,gaveteiro,1919.78,1281.61,638.17,orcamento,1,produto,647,orcamento,Belo Horizonte,MG,residencial
+1256,1001,5023,2025-09-17,2,Instagram,padrao,Sala,Madeira Maciça,Natural,0.60x0.45x1.80,1,painel ripado,2393.8,1453.48,940.32,aprovado,1,orcamento,130,orcamento,Salvador,BA,residencial
+1257,1131,5012,2025-09-08,5,WhatsApp,modulado,Cozinha,MDP,Branco,0.60x0.60x2.10,1,calha de tomada,1555.79,856.96,698.83,aprovado,1,checkout,414,comprar,Brasilia,DF,residencial
+1258,1162,5011,2025-09-04,1,Google,modulado,Cozinha,MDP,Amadeirado,2.40x0.60x2.10,6,LED sob medida,9899.71,6353.46,3546.25,orcamento,1,checkout,600,abandonar,Curitiba,PR,residencial
+1259,1190,5013,2025-09-16,1,Google,modulado,Cozinha,MDF,Fosco,1.50x0.60x2.10,3,rodape MDF,5282.19,3589.64,1692.55,orcamento,1,categoria,132,visualizar,Joinville,SC,residencial
+1260,1278,5019,2025-09-26,2,Instagram,modulado,Home Office,MDP,Branco,2.40x0.60x1.80,6,passa fios,10659.46,6008.35,4651.11,entregue,1,produto,257,visualizar,Sao Paulo,SP,residencial
+1261,1020,5017,2025-09-21,2,Instagram,modulado,Sala,MDP,Cinza,2.40x0.45x1.80,6,nenhum,11449.59,7051.18,4398.41,aprovado,2,produto,64,visualizar,Manaus,AM,residencial
+1262,1262,5012,2025-09-02,2,Instagram,modulado,Cozinha,MDP,Branco,2.40x0.60x1.80,6,nenhum,7275.51,4437.44,2838.07,aprovado,1,produto,100,comprar,Sao Jose dos Campos,SP,residencial
+1263,1282,5007,2025-09-27,2,Instagram,planejado,Sala,MDF,Brilho,2.40x0.45x2.30,6,nenhum,19529.46,11311.05,8218.41,orcamento,1,carrinho,139,abandonar,Salvador,BA,corporativo
+1264,1258,5007,2025-09-09,5,WhatsApp,planejado,Sala,MDF,Brilho,2.10x0.45x2.40,5,nenhum,18910.94,12549.7,6361.24,orcamento,1,checkout,58,abandonar,Vitoria,ES,corporativo
+1265,1133,5002,2025-09-21,4,Facebook,planejado,Cozinha,MDF,Laca,1.80x0.60x2.20,4,rodape MDF,13112.66,8265.54,4847.12,aprovado,1,checkout,380,comprar,Belo Horizonte,MG,residencial
+1266,1172,5004,2025-09-11,2,Instagram,planejado,Quarto,MDF,Fosco,2.10x0.55x2.20,5,modulo canto,20321.58,12697.94,7623.64,aprovado,2,produto,237,visualizar,Rio de Janeiro,RJ,residencial
+1267,1183,5004,2025-09-22,6,YouTube,planejado,Quarto,MDF,Fosco,3.20x0.55x2.10,8,cabideiro extra,25858.66,16092.98,9765.68,orcamento,3,orcamento,311,orcamento,Sao Paulo,SP,corporativo
+1268,1262,5007,2025-09-08,4,Facebook,planejado,Sala,MDF,Brilho,1.50x0.45x2.10,3,rack TV,11072.24,6143.81,4928.43,aprovado,1,produto,153,visualizar,Sao Jose dos Campos,SP,residencial
+1269,1236,5008,2025-09-01,1,Google,planejado,Sala,MDF,Acetinado,1.80x0.45x2.40,4,estante nicho,13316.17,7842.63,5473.54,orcamento,1,orcamento,404,orcamento,Natal,RN,residencial
+1270,1147,5005,2025-09-23,4,Facebook,planejado,Quarto,MDF,Amadeirado,2.40x0.55x2.40,6,cabideiro premium,16960.22,10793.21,6167.01,orcamento,1,produto,472,visualizar,Sao Jose dos Campos,SP,corporativo
+1271,1101,5003,2025-09-26,1,Google,planejado,Cozinha,Madeira Maciça,Natural,2.80x0.60x2.40,7,LED,48363.82,30473.92,17889.9,orcamento,1,orcamento,78,visualizar,Belem,PA,residencial
+1272,1084,5001,2025-09-27,1,Google,planejado,Cozinha,MDF,Fosco,1.20x0.60x2.40,2,rodape MDF,6150.58,3897.15,2253.43,aprovado,1,checkout,650,comprar,Recife,PE,corporativo
+1273,1226,5015,2025-09-18,1,Google,modulado,Quarto,MDP,Fosco,2.80x0.55x2.10,7,porta de correr,12139.44,8017.84,4121.6,orcamento,1,checkout,178,abandonar,Niteroi,RJ,corporativo
+1274,1173,5011,2025-09-30,1,Google,modulado,Cozinha,MDP,Amadeirado,1.20x0.60x2.10,2,LED sob medida,2785.7,1643.9,1141.8,aprovado,1,orcamento,401,comprar,Florianopolis,SC,residencial
+1275,1267,5027,2025-09-01,1,Google,planejado,Banheiro,MDF,Laca,1.80x0.40x2.30,4,nenhum,13853.69,7966.38,5887.31,orcamento,2,carrinho,56,visualizar,Belo Horizonte,MG,residencial
+1276,1269,5018,2025-09-03,1,Google,modulado,Sala,MDF,Brilho,2.10x0.45x2.00,5,rack suspenso,11890.1,6948.61,4941.49,aprovado,1,checkout,204,comprar,Belo Horizonte,MG,residencial
+1277,1069,5009,2025-09-30,1,Google,planejado,Home Office,MDF,Fosco,3.20x0.60x2.40,8,nenhum,27159.37,16749.91,10409.46,produzido,1,checkout,676,abandonar,Uberlandia,MG,residencial
+1278,1289,5011,2025-09-21,3,Direto,modulado,Cozinha,MDP,Amadeirado,1.50x0.60x2.10,3,gabinete extra,3804.84,2268.37,1536.47,orcamento,1,checkout,169,orcamento,Campinas,SP,corporativo
+1279,1241,5013,2025-09-25,2,Instagram,modulado,Cozinha,MDF,Fosco,0.60x0.60x2.20,1,rodape MDF,2221.47,1404.48,816.99,aprovado,1,produto,691,visualizar,Porto Alegre,RS,residencial

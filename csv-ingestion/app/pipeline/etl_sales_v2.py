@@ -16,8 +16,13 @@ from app.api.config import (
     FIXED_SALES_FILES_GLOB,
     STAGING_TRANSACTIONS_TABLE,
 )
-from app.api.upload import get_unread_csv_files, move_file_to_read, validate_columns_file
-from app.pipeline.schema import create_analytical_model
+from app.api.upload import (
+    get_read_directory,
+    get_unread_csv_files,
+    move_file_to_read,
+    validate_columns_file,
+)
+from app.pipeline.schema_v2 import create_analytical_model
 
 
 def _safe_sql_identifier(value: str) -> str:
@@ -113,27 +118,50 @@ def _ensure_tables(conn) -> None:
                 row_number INTEGER NOT NULL,
                 row_hash TEXT NOT NULL,
                 id_venda BIGINT NOT NULL,
-                data_venda DATE NOT NULL,
                 id_cliente BIGINT NOT NULL,
-                cidade TEXT NOT NULL,
-                estado TEXT NOT NULL,
-                tipo_cliente TEXT NOT NULL,
+                id_produto BIGINT NOT NULL,
+                data_venda DATE NOT NULL,
+                id_origem INTEGER NOT NULL,
+                origem TEXT NOT NULL,
                 tipo_produto TEXT NOT NULL,
                 categoria TEXT NOT NULL,
                 material TEXT NOT NULL,
-                origem TEXT NOT NULL,
+                acabamento TEXT NOT NULL,
+                medidas TEXT NOT NULL,
+                quantidade_modulos INTEGER NOT NULL,
+                adicionais TEXT NOT NULL,
                 valor_total NUMERIC(14, 2) NOT NULL,
                 custo_total NUMERIC(14, 2) NOT NULL,
                 margem_lucro NUMERIC(14, 2) NOT NULL,
-                quantidade INTEGER NOT NULL,
                 status TEXT NOT NULL,
+                quantidade INTEGER NOT NULL,
+                pagina TEXT NOT NULL,
+                tempo_permanencia INTEGER NOT NULL,
+                acao TEXT NOT NULL,
+                cidade TEXT NOT NULL,
+                estado TEXT NOT NULL,
+                tipo_cliente TEXT NOT NULL,
                 source_file_name TEXT NOT NULL,
-                loaded_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-                UNIQUE(batch_id, row_hash),
-                UNIQUE(source_file_name, id_venda)
+                loaded_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
             );
             """
         )
+
+        # Evolução de esquema para bases antigas
+        alter_statements = [
+            f"ALTER TABLE {STAGING_TABLE} ADD COLUMN IF NOT EXISTS id_produto BIGINT",
+            f"ALTER TABLE {STAGING_TABLE} ADD COLUMN IF NOT EXISTS id_origem INTEGER",
+            f"ALTER TABLE {STAGING_TABLE} ADD COLUMN IF NOT EXISTS acabamento TEXT",
+            f"ALTER TABLE {STAGING_TABLE} ADD COLUMN IF NOT EXISTS medidas TEXT",
+            f"ALTER TABLE {STAGING_TABLE} ADD COLUMN IF NOT EXISTS quantidade_modulos INTEGER",
+            f"ALTER TABLE {STAGING_TABLE} ADD COLUMN IF NOT EXISTS adicionais TEXT",
+            f"ALTER TABLE {STAGING_TABLE} ADD COLUMN IF NOT EXISTS pagina TEXT",
+            f"ALTER TABLE {STAGING_TABLE} ADD COLUMN IF NOT EXISTS tempo_permanencia INTEGER",
+            f"ALTER TABLE {STAGING_TABLE} ADD COLUMN IF NOT EXISTS acao TEXT",
+            f"ALTER TABLE {STAGING_TABLE} ADD COLUMN IF NOT EXISTS tipo_produto TEXT",
+        ]
+        for statement in alter_statements:
+            cur.execute(statement)
 
 
 def _compute_file_hash(file_path: Path) -> str:
@@ -165,7 +193,7 @@ def _parse_sale_date(value: str):
         raise ValueError(f"Data inválida: {value}. Formato esperado: YYYY-MM-DD") from exc
 
 
-def _parse_positive_int(value: str, field_name: str) -> int:
+def _parse_non_negative_int(value: str, field_name: str) -> int:
     cleaned = (value or "").strip()
     if not cleaned:
         raise ValueError(f"Campo obrigatório vazio: {field_name}")
@@ -182,35 +210,40 @@ def _parse_positive_int(value: str, field_name: str) -> int:
 
 
 def _normalize_status(value: str) -> str:
-    status = _normalize_text(value).lower()
-    valid = {"orçamento", "orcamento", "aprovado", "produzido", "entregue"}
-    if status not in valid:
+    normalized = _normalize_text(value).lower()
+    mapper = {
+        "orcamento": "orçamento",
+        "orçamento": "orçamento",
+        "aprovado": "aprovado",
+        "produzido": "produzido",
+        "entregue": "entregue",
+    }
+    if normalized not in mapper:
         raise ValueError(f"Status inválido: {value}")
-    if status == "orcamento":
-        return "orçamento"
-    return status
+    return mapper[normalized]
+
+
+def _normalize_action(value: str) -> str:
+    normalized = _normalize_text(value).lower()
+    mapper = {
+        "visualizar": "visualizacao",
+        "visualizacao": "visualizacao",
+        "orcamento": "orcamento",
+        "orçamento": "orcamento",
+        "comprar": "compra",
+        "compra": "compra",
+        "abandonar": "abandono",
+        "abandono": "abandono",
+    }
+    return mapper.get(normalized, normalized)
+
+
+def _normalize_page(value: str) -> str:
+    return _normalize_text(value).lower().replace(" ", "_")
 
 
 def _hash_row(row: dict) -> str:
-    raw = "|".join(
-        [
-            row["id_venda"].strip(),
-            row["data"].strip(),
-            row["id_cliente"].strip(),
-            _normalize_text(row["cidade"]),
-            _normalize_text(row["estado"]),
-            _normalize_text(row["tipo_cliente"]),
-            _normalize_text(row["tipo_produto"]),
-            _normalize_text(row["categoria"]),
-            _normalize_text(row["material"]),
-            _normalize_text(row["origem"]),
-            row["valor_total"].strip(),
-            row["custo_total"].strip(),
-            row["margem_lucro"].strip(),
-            row["quantidade"].strip(),
-            _normalize_text(row["status"]),
-        ]
-    )
+    raw = "|".join((row.get(column, "") or "").strip() for column in EXPECTED_COLUMNS)
     return hashlib.sha256(raw.encode("utf-8")).hexdigest()
 
 
@@ -252,14 +285,17 @@ def _parse_rows(file_path: Path) -> list[dict]:
             )
 
         for row_number, row in enumerate(reader, start=2):
-            id_venda = _parse_positive_int(row["id_venda"], "id_venda")
-            id_cliente = _parse_positive_int(row["id_cliente"], "id_cliente")
-            quantidade = _parse_positive_int(row["quantidade"], "quantidade")
+            id_venda = _parse_non_negative_int(row["id_venda"], "id_venda")
+            id_cliente = _parse_non_negative_int(row["id_cliente"], "id_cliente")
+            id_produto = _parse_non_negative_int(row["id_produto"], "id_produto")
+            id_origem = _parse_non_negative_int(row["id_origem"], "id_origem")
+            quantidade = _parse_non_negative_int(row["quantidade"], "quantidade")
+            qtd_modulos = _parse_non_negative_int(row["quantidade_modulos"], "quantidade_modulos")
+            tempo = _parse_non_negative_int(row["tempo_permanencia"], "tempo_permanencia")
 
             valor_total = _parse_decimal(row["valor_total"])
             custo_total = _parse_decimal(row["custo_total"])
             margem_lucro = _parse_decimal(row["margem_lucro"])
-
             margem_calculada = valor_total - custo_total
             if margem_lucro != margem_calculada:
                 margem_lucro = margem_calculada
@@ -269,20 +305,29 @@ def _parse_rows(file_path: Path) -> list[dict]:
                     "row_number": row_number,
                     "row_hash": _hash_row(row),
                     "id_venda": id_venda,
-                    "data_venda": _parse_sale_date(row["data"]),
                     "id_cliente": id_cliente,
-                    "cidade": _normalize_text(row["cidade"]),
-                    "estado": _normalize_text(row["estado"]).upper(),
-                    "tipo_cliente": _normalize_text(row["tipo_cliente"]).upper(),
-                    "tipo_produto": _normalize_text(row["tipo_produto"]).lower(),
-                    "categoria": _normalize_text(row["categoria"]).lower(),
-                    "material": _normalize_text(row["material"]).upper(),
+                    "id_produto": id_produto,
+                    "data_venda": _parse_sale_date(row["data"]),
+                    "id_origem": id_origem,
                     "origem": _normalize_text(row["origem"]),
+                    "tipo_produto": _normalize_text(row["tipo_movel"]).lower(),
+                    "categoria": _normalize_text(row["categoria"]).lower(),
+                    "material": _normalize_text(row["material"]),
+                    "acabamento": _normalize_text(row["acabamento"]),
+                    "medidas": _normalize_text(row["medidas"]),
+                    "quantidade_modulos": qtd_modulos,
+                    "adicionais": _normalize_text(row["adicionais"]),
                     "valor_total": valor_total,
                     "custo_total": custo_total,
                     "margem_lucro": margem_lucro,
-                    "quantidade": quantidade,
                     "status": _normalize_status(row["status"]),
+                    "quantidade": quantidade,
+                    "pagina": _normalize_page(row["pagina"]),
+                    "tempo_permanencia": tempo,
+                    "acao": _normalize_action(row["acao"]),
+                    "cidade": _normalize_text(row["cidade"]),
+                    "estado": _normalize_text(row["estado"]).upper(),
+                    "tipo_cliente": _normalize_text(row["tipo_cliente"]).lower(),
                 }
             )
 
@@ -305,45 +350,63 @@ def _insert_rows(conn, batch_id: int, source_file_name: str, rows: list[dict]) -
                     row_number,
                     row_hash,
                     id_venda,
-                    data_venda,
                     id_cliente,
-                    cidade,
-                    estado,
-                    tipo_cliente,
+                    id_produto,
+                    data_venda,
+                    id_origem,
+                    origem,
                     tipo_produto,
                     categoria,
                     material,
-                    origem,
+                    acabamento,
+                    medidas,
+                    quantidade_modulos,
+                    adicionais,
                     valor_total,
                     custo_total,
                     margem_lucro,
-                    quantidade,
                     status,
+                    quantidade,
+                    pagina,
+                    tempo_permanencia,
+                    acao,
+                    cidade,
+                    estado,
+                    tipo_cliente,
                     source_file_name
                 ) VALUES (
-                    %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s
+                    %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s
                 )
-                ON CONFLICT (source_file_name, id_venda) DO NOTHING;
+                ON CONFLICT DO NOTHING;
                 """,
                 (
                     batch_id,
                     row["row_number"],
                     row["row_hash"],
                     row["id_venda"],
-                    row["data_venda"],
                     row["id_cliente"],
-                    row["cidade"],
-                    row["estado"],
-                    row["tipo_cliente"],
+                    row["id_produto"],
+                    row["data_venda"],
+                    row["id_origem"],
+                    row["origem"],
                     row["tipo_produto"],
                     row["categoria"],
                     row["material"],
-                    row["origem"],
+                    row["acabamento"],
+                    row["medidas"],
+                    row["quantidade_modulos"],
+                    row["adicionais"],
                     row["valor_total"],
                     row["custo_total"],
                     row["margem_lucro"],
-                    row["quantidade"],
                     row["status"],
+                    row["quantidade"],
+                    row["pagina"],
+                    row["tempo_permanencia"],
+                    row["acao"],
+                    row["cidade"],
+                    row["estado"],
+                    row["tipo_cliente"],
                     source_file_name,
                 ),
             )
@@ -467,6 +530,11 @@ def run_etl_from_unread():
     return _run_etl_for_files(get_unread_csv_files())
 
 
+def run_etl_from_read():
+    read_dir = get_read_directory()
+    return _run_etl_for_files(sorted(read_dir.glob("*.csv")), move_after_load=False)
+
+
 def executar_etl(diretorio_csv: str = None):
     if diretorio_csv:
         csv_dir = Path(diretorio_csv)
@@ -476,6 +544,15 @@ def executar_etl(diretorio_csv: str = None):
     fixed_files = _get_fixed_csv_files()
     if fixed_files:
         return _run_etl_for_files(fixed_files, move_after_load=False)
+
+    unread_files = get_unread_csv_files()
+    if unread_files:
+        return _run_etl_for_files(unread_files)
+
+    read_dir = get_read_directory()
+    read_files = sorted(read_dir.glob("*.csv"))
+    if read_files:
+        return _run_etl_for_files(read_files, move_after_load=False)
 
     return run_etl_from_unread()
 

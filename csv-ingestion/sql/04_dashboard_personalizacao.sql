@@ -27,10 +27,14 @@ GROUP BY dpers.medidas
 ORDER BY total_vendas DESC, total_itens DESC;
 
 -- 3) Clientes preferem mais custo-benefício ou acabamento premium?
--- Suposição: `adicionais` ou atributos derivados indicam padrão premium.
+-- Regra: considera premium quando acabamento/adicional indicar premium, laca, brilho ou LED.
 SELECT
     CASE
-        WHEN LOWER(dpers.adicionais) LIKE '%premium%' THEN 'premium'
+        WHEN LOWER(dpers.adicionais) LIKE '%premium%'
+            OR LOWER(dpers.adicionais) LIKE '%led%'
+            OR LOWER(vb.acabamento) LIKE '%laca%'
+            OR LOWER(vb.acabamento) LIKE '%brilho%'
+        THEN 'premium'
         ELSE 'custo_beneficio'
     END AS perfil_escolha,
     COUNT(*) AS total_vendas,
@@ -39,5 +43,6 @@ SELECT
     ROUND(AVG(fv.valor_total), 2) AS ticket_medio
 FROM fato_vendas fv
 JOIN dim_personalizacao dpers ON dpers.id_personalizacao_sk = fv.id_personalizacao_sk
+JOIN vw_base_vendas vb ON vb.id_venda = fv.id_venda
 GROUP BY 1
 ORDER BY total_vendas DESC, receita_total DESC;

@@ -1,7 +1,5 @@
 -- Dashboard de comportamento do cliente
--- Estas queries dependem de `fato_navegacao` populada.
--- Estrutura mínima esperada:
--- fato_navegacao(id_evento, id_cliente, id_produto, id_tempo, pagina, tempo_permanencia, acao, origem)
+-- Base atual: fato_navegacao (carregada pela ETL v2)
 
 -- 1) Em que etapa os clientes desistem (visualização -> orçamento -> compra)?
 WITH funil AS (
@@ -38,14 +36,16 @@ compras AS (
     GROUP BY fv.id_produto_sk
 )
 SELECT
+    dp.id_produto,
     dp.tipo_produto,
     dp.categoria,
     dp.material,
+    dp.acabamento,
     v.total_visualizacoes,
     COALESCE(c.total_compras, 0) AS total_compras,
     ROUND(v.total_visualizacoes::NUMERIC / NULLIF(COALESCE(c.total_compras, 0), 0), 2) AS relacao_view_compra
 FROM visualizacoes v
-JOIN dim_produto dp ON dp.id_produto_sk = v.id_produto
+JOIN dim_produto dp ON dp.id_produto = v.id_produto
 LEFT JOIN compras c ON c.id_produto_sk = dp.id_produto_sk
 ORDER BY v.total_visualizacoes DESC, total_compras ASC;
 

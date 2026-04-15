@@ -1,6 +1,0 @@
-id_venda,data,id_cliente,cidade,estado,tipo_cliente,tipo_produto,categoria,material,origem,valor_total,custo_total,margem_lucro,quantidade,status
-11,2026-03-02,111,Porto Alegre,RS,PF,planejado,cozinha,MDF,Google,11000,7000,4000,1,aprovado
-12,2026-03-06,112,Viamão,RS,PF,modulado,quarto,MDP,Instagram,3000,2000,1000,1,entregue
-13,2026-03-11,113,Canoas,RS,PJ,planejado,escritorio,MDF,Google,17000,11000,6000,1,produzido
-14,2026-03-19,114,Gravataí,RS,PF,padrão,cozinha,MDP,Direto,2200,1500,700,1,entregue
-15,2026-03-27,115,Porto Alegre,RS,PF,modulado,sala,MDF,Instagram,3600,2400,1200,1,aprovado
