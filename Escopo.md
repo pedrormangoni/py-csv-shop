@@ -69,10 +69,6 @@ Explora os dados de customização dos móveis, permitindo identificar preferên
 - Existe padrão de tamanho mais pedido?
 - Clientes preferem mais custo-benefício ou acabamento premium?
 
-### 5. Dashboard de produção
-
-Acompanha o desempenho operacional da marcenaria, ajudando a identificar ineficiências e melhorar processos.
-
 **Pergunta-chave:**
 
 - Quanto tempo leva para produzir cada tipo?
