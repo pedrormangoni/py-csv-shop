@@ -161,7 +161,7 @@ Armazena dados de configuração dos móveis.
 
 **Campos:** id_personalizacao, medidas, quantidade_modulos, adicionais
 
-### Fato_navegacao (opcional – nível mais avançado)
+### Fato_navegacao
 
 Armazena eventos de navegação dos usuários no site.
 
