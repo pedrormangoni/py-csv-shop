@@ -102,7 +102,7 @@ Utilizado para realizar o processo de extração, transformação e carga dos da
 
 Utilizado como banco de dados para armazenamento estruturado dos dados históricos. Permitirá organizar as informações em tabelas otimizadas para consulta, facilitando análises e garantindo desempenho no processamento dos dados.
 
-### Power BI para visualização
+### Metabase para visualização
 
 Utilizado para criação de dashboards e relatórios interativos. A ferramenta permitirá a análise dos dados de forma visual, auxiliando na identificação de padrões, indicadores e insights para a tomada de decisão.
 
